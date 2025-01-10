@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="form.css">
+  <title>my form</title>
+</head>
+<body>
+    <div class="center-body-content">
+    <!-- this contianer contains the form and aside numbers -->
+    <div class="container">
+
+      <!-- my side numbers -->
+        <div class="aside">
+
+          <div class="flex">
+            <p class="numbered-indicators no-1">1</p>
+            <div>
+             <p class="steps">step 1</p>
+             <p class="info">your info</p>
+            </div>
+         </div>
+   
+         <div class="flex">
+           <p class="numbered-indicators no-2">2</p>
+           <div>
+            <p class="steps">step 2</p>
+            <p class="info">select plan</p>
+           </div>
+        </div>
+   
+        <div class="flex">
+         <p class="numbered-indicators no-3">3</p>
+         <div>
+          <p class="steps">step 3</p>
+          <p class="info">add-ons</p>
+         </div>
+      </div>
+   
+      <div class="flex">
+       <p class="numbered-indicators no-4 ">4</p>
+       <div>
+        <p class="steps">step 4</p>
+        <p class="info">summary</p>
+       </div>
+    </div>
+
+        </div>
+
+
+        <!-- my form acting as a container so i can submit at the fourth stage -->
+        <form id="form" action="/" method="get">
+
+          <!-- === my first step form === -->
+        <div class="main-form-1">
+            <div>
+              <h1 class="mar-blu">personal info</h1>
+              <p class="cl-gray"><small>please provide your name, email address, and  phone number</small></p>
+            </div>
+        
+              
+            <div class="form-input">
+              <label for="name"> <div class="check"><p><small>Name</small></p></div>  
+                <input required id="name" name="name" placeholder="e.g. Stephen King" type="text">
+              </label>
+        
+              <label for="email"><div class="check"><p><small>Email Address</small></p>
+              </div>
+                <input id="email" required name="email" placeholder="e.g. Stephen King@lorem.com" type="email">
+              </label>
+        
+              <label for="phone"> <div class="check"><p><small>Phone Number</small></p>
+              <p class="fw stwr-red fs js-num-error"></p>
+              </div>
+                <input id="ph-no" name="phone" placeholder="e.g. +2347046253045" type="te">
+              </label>
+              </div>
+        </div>
+
+
+        <!-- === my second step form === -->
+
+        <div class="main-form-2">
+          <div>
+            <h1 class="mar-blu">Select your plan</h1>
+            <p class="cl-gray">You have the option of monthly or yearly billing</p>
+          </div>
+      
+          <div class="suscribe-plan">
+            <div class="suscribe-options">
+      
+              <div class="suscribe-box arcade" onclick="arcade()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fill-rule="evenodd"><circle cx="20" cy="20" r="20" fill="#FFAF7E"/><path fill="#FFF" fill-rule="nonzero" d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"/></g></svg>
+      
+                <div>
+                  <p class="fw">Arcade</p>
+                  <p class="cl-gray year-plan-1 ">$9/mo</p>
+                  <p class="year-plan-info fs"></p>
+                </div>
+              </div>
+      
+              <div class="suscribe-box advance" onclick="advance()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fill-rule="evenodd"><circle cx="20" cy="20" r="20" fill="#F9818E"/><path fill="#FFF" fill-rule="nonzero" d="M25.057 15H14.944C12.212 15 10 17.03 10 19.885c0 2.857 2.212 4.936 4.944 4.936h10.113c2.733 0 4.943-2.08 4.943-4.936S27.79 15 25.057 15ZM17.5 20.388c0 .12-.108.237-.234.237h-1.552v1.569c0 .126-.138.217-.259.217H14.5c-.118 0-.213-.086-.213-.203v-1.583h-1.569c-.126 0-.217-.139-.217-.26v-.956c0-.117.086-.213.202-.213h1.584v-1.554c0-.125.082-.231.203-.231h.989c.12 0 .236.108.236.234v1.551h1.555c.125 0 .231.083.231.204v.988Zm5.347.393a.862.862 0 0 1-.869-.855c0-.472.39-.856.869-.856.481 0 .87.384.87.856 0 .471-.389.855-.87.855Zm1.9 1.866a.86.86 0 0 1-.87-.852.86.86 0 0 1 .87-.855c.48 0 .87.38.87.855a.86.86 0 0 1-.87.852Zm0-3.736a.862.862 0 0 1-.87-.854c0-.472.39-.856.87-.856s.87.384.87.856a.862.862 0 0 1-.87.854Zm1.899 1.87a.862.862 0 0 1-.868-.855c0-.472.389-.856.868-.856s.868.384.868.856a.862.862 0 0 1-.868.855Z"/></g></svg>
+      
+                <div >
+                  <p class="fw">Advanced</p>
+                  <p class="cl-gray year-plan-2">$12/mo</p>
+                  <p class="year-plan-info2 fs"></p>
+                </div>
+              </div>
+      
+              <div class="suscribe-box pro" onclick="pro()" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fill-rule="evenodd"><circle cx="20" cy="20" r="20" fill="#483EFF"/><path fill="#FFF" fill-rule="nonzero" d="M26.666 13H13.334A3.333 3.333 0 0 0 10 16.333v7.193a3.447 3.447 0 0 0 2.14 3.24c1.238.5 2.656.182 3.56-.8L18.52 23h2.96l2.82 2.966a3.2 3.2 0 0 0 3.56.8 3.447 3.447 0 0 0 2.14-3.24v-7.193A3.333 3.333 0 0 0 26.666 13Zm-9.333 6H16v1.333a.667.667 0 0 1-1.333 0V19h-1.333a.667.667 0 0 1 0-1.334h1.333v-1.333a.667.667 0 1 1 1.333 0v1.333h1.333a.667.667 0 1 1 0 1.334Zm7.333 2a2.667 2.667 0 1 1 0-5.333 2.667 2.667 0 0 1 0 5.333ZM26 18.333a1.333 1.333 0 1 1-2.667 0 1.333 1.333 0 0 1 2.667 0Z"/></g></svg>
+      
+                <div>
+                  <p class="fw">pro</p>
+                  <p class="cl-gray year-plan-3">$15/mo</p>
+                  <p class="year-plan-info3 fs"></p>
+                </div>
+              </div>
+            </div>
+      
+            <div class="time-plan">
+              <p>Monthly</p>
+      
+              <div class="on-btn" onclick="switchPlan()"><div class="on"></div></div>
+      
+              <p class="cl-gray">Yearly</p>
+            </div>
+          </div>
+          </div>
+
+          <!-- my third step form -->
+
+          <div class="main-form-3">
+            <div>
+              <h1 class="mar-blu">Pick add-ons</h1>
+              <p class="cl-gray">Add-ons help enhance your gaming experience</p>
+            </div>
+        
+               <div class="checks">
+        
+                <div class="check-box" onclick="checkBox1()">
+                  <div class=" ha">
+                    <input class="checked js-check-input-1" type="checkbox">
+                    <div>
+                      <p class="fw">Online service</p>
+                      <p class="cl-gray">Access to multiplayer games</p>
+                    </div>
+                  </div>
+        
+                  <p class="pur-blu pg-3-price-1">+$1/mo</p>
+                </div>
+        
+                <div class="check-box" onclick="checkBox2()">
+                  <div class="ha ">
+                    <input class="checked js-check-input-2" type="checkbox">
+                    <div>
+                      <p class="fw">Larger storage</p>
+                      <p class="cl-gray">Extra 1TB of cloud save</p>
+                    </div>
+                  </div>
+        
+                  <p class="pur-blu pg-3-price-2">+$2/mo</p>
+                </div>
+        
+                <div class="check-box" onclick="checkBox3()">
+                  <div class="ha">
+                    <input class="checked js-check-input-3" type="checkbox">
+                    <div>
+                      <p class="fw">Customizable Profile</p>
+                      <p class="cl-gray">Custom theme on your profile</p>
+                    </div>
+                  </div>
+        
+                  <p class="pur-blu pg-3-price-3">+$2/mo</p>
+                </div>
+              </div>
+        
+            </div>
+
+          <!-- my fourth step form -->
+          <div class="main-form-4">
+            <div>
+              <h1 class="mar-blu">Finishing up</h1>
+              <p class="cl-gray">Double-check everything looks ok before confirming.</p>
+            </div>
+        
+            <div class="fees bkg-mag">
+              <div class="costs ">
+                <div>
+                  <p class="fw">Arcade(monthly)</p>
+                <p class="cl-gray"><u>change</u></p>
+                </div>
+                <p class="fw pg-4-price-0">+$9/mo</p>
+              </div>
+
+              <div  class="services">
+                <div class="costs">
+                  <p class="cl-gray">
+                    online service
+                  </p>
+                  <p class="pg-4-price-1">
+                    +$1/mos
+                  </p>
+                </div>
+          
+                <div class="costs">
+                  <p class="cl-gray">Larger storage</p>
+                  <p class="pg-4-price-2">+$2/mo</p>
+                </div>
+             </div>
+
+            </div>
+        
+            <div class="costs">
+              <p class="cl-gray">Total (per month)</p>
+              <p class="fw pur-blu total">+$12/mo</p>
+            </div>
+        
+          </div>
+
+          <!-- my fifth stepp form -->
+            <div class="main-form-5">
+            <img src="images/icon-thank-you.svg" width="70px" height="70px" alt="">
+            <h1>Thank you</h1>
+            <p class="cl-gray t-centre">
+              Thanks for confirmin gyour suscription! we hope you have fun 
+               using our platform.if you ever need support,please feel free to email us at support@loremgaming.com
+            </p>
+            </div>
+
+       <!-- there will only be one button -->
+        <div class="btn-box">
+          <button type="button" onclick="prvBtn()" class="cl-gray bkg-white prv-btn">Go Back</button>
+          <button>Next Step</button>
+        </div>
+
+        </form> 
+
+    </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
