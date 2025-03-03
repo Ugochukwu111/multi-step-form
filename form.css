@@ -69,6 +69,7 @@ button{
   font-size: .65rem;
 }
 
+
 .center-body-content{
   height: 100svh;
   display: flex;
@@ -301,6 +302,10 @@ form{
   display: flex;
   justify-content: space-between;
   margin-bottom: .3em;
+}
+
+.ds-none{
+  display: none;
 }
 
 

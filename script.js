@@ -2,7 +2,6 @@
 
 
 let count = 0; // this changes the steps if this equal to 2 step two loads and so on
- //this is what contrils my switching  from year plan to monthly plan
 
 
 // my aside html-element so i can change bkg-clr in differ sections.
@@ -32,6 +31,9 @@ let pg3Price2El = document.querySelector('.pg-3-price-2');
 let pg3Price3El = document.querySelector('.pg-3-price-3');
 
 let pg4Price1El = document.querySelector('.pg-4-price-1');
+let pg4Price2El = document.querySelector('.pg-4-price-2');
+let pg4Price3El = document.querySelector('.pg-4-price-3');
+
 
 //pg3Price1El.style.color = 'red'
 //
@@ -47,10 +49,15 @@ let onbtnEL = document.querySelector('.on-btn');//biger container that holds my 
 let onEL = document.querySelector('.on');
 
 
-// my subscribtion plans elements arcade
+// my subscribtion plans elementsboxes arcade
 let arcadeEl =  document.querySelector('.arcade');
 let advanceEl =  document.querySelector('.advance');
 let proEl =  document.querySelector('.pro');
+
+//checkboxes
+let checkboxEl1 = document.querySelector('.check-box-1');
+let checkboxEl2 = document.querySelector('.check-box-2');
+let checkboxEl3 = document.querySelector('.check-box-3');
 
 
 //my input check element  
@@ -60,6 +67,11 @@ let proEl =  document.querySelector('.pro');
 let inputEl1 =  document.querySelector('.js-check-input-1');
 let inputEl2 =  document.querySelector('.js-check-input-2');
 let inputEl3 =  document.querySelector('.js-check-input-3');
+
+//service elements
+ let service1El = document.querySelector('.js-service-1');
+ let service2El = document.querySelector('.js-service-2');
+ let service3El = document.querySelector('.js-service-3');
 
 
 
@@ -162,7 +174,7 @@ let reveal = false
         main3.style.display = 'none';
         main4.style.display = 'flex';
       }
-    console.log(count)
+    //console.log(count)
     }
 
 
@@ -171,6 +183,12 @@ let reveal = false
 let notiA = false ; // my notifier for arcade
 let notiB = false ; // my notifier for advance
 let notiC =  false ; //  my notifier for pro
+
+
+
+
+let amount = 0;
+let sumCheckBox = 0;
 
     function switchPlan() {
       if(susPlanBtn === 0) {
@@ -193,21 +211,14 @@ let notiC =  false ; //  my notifier for pro
           pg3Price2El.innerHTML = `$${price.lgStorage}/mo`
           pg3Price3El.innerHTML = `$${price.customPro}/mo`;
 
-          pg4Price1El.innerHTML = `$${price.onService}/mo`
+          pg4Price1El.innerHTML = `$${price.onService}/mo`;
+          pg4Price2El.innerHTML = `$${price.lgStorage}/mo`;
+          pg4Price3El.innerHTML = `$${price.customPro}/mo`;
 
-        if (checkEl === true) {
-          checkBox1()
-        }
-
-        if (check2El === true) {
-          checkBox2()
-        }
-
-        if (check3El === true) {
-          checkBox3()
-        }
-
-          //updateCheckboxesForMonthlyPlan()
+      
+          sumCheckBox = sumCheckBox * 0.1
+          console.log(sumCheckBox)  ;
+        
         }
       else if (susPlanBtn === 1) {
 
@@ -231,9 +242,13 @@ let notiC =  false ; //  my notifier for pro
         pg3Price2El.innerHTML = `$${price.lgStorage}/yr`
         pg3Price3El.innerHTML = `$${price.customPro}/yr`;
 
-        pg4Price1El.innerHTML = `$${price.onService}/yr`
-        
-        //updateCheckboxesForYearlyPlan()
+        pg4Price1El.innerHTML = `$${price.onService}/yr`;
+        pg4Price2El.innerHTML = `$${price.lgStorage}/yr`
+         pg4Price3El.innerHTML = `$${price.customPro}/yr`;
+
+         sumCheckBox = sumCheckBox * 10
+         console.log(sumCheckBox)
+    
       }
 
       
@@ -249,19 +264,8 @@ let notiC =  false ; //  my notifier for pro
   if (notiC=== true) {
     pro()
   }
+       
 
-  if (checkEl === true) {
-    checkBox1()
-  }
-
-  
-  if (check2El === true) {
-    checkBox2()
-  }
-
-  if (check3El === true) {
-    checkBox3()
-  }
   
     }
   
@@ -277,8 +281,10 @@ function plan(name, value) {
 }
 
 
-let total = 0
-let hi = 0
+function addSubcribtions(amount) {
+  let amountOfSubcriptions = amount;
+  return amountOfSubcriptions;
+}
 
 
     function arcade() {
@@ -292,18 +298,17 @@ let hi = 0
       proEl.style.border = '1px solid hsl(231, 11%, 63%)';
 
       plan('Arcade', yearPlan1El.innerHTML);
-      hi = total +  price.arcade;
-      totalEl.innerHTML = `$${hi}`;
 
       notiA = true;
       notiB = false;
       notiC = false;
 
-      return 1;
+      let userSubcriptionamount = addSubcribtions(price.arcade);
 
+      
     }   
     arcade()
-
+ 
     function advance() {
       console.log('advanced clicked')
       advanceEl.style.border = '1px solid hsl(243, 100%, 62%)';
@@ -316,11 +321,11 @@ let hi = 0
       proEl.style.border = '1px solid hsl(231, 11%, 63%)';
 
       plan('Advanced', yearPlan2El.innerHTML);
-      hi = total +  price.advanced;
-      totalEl.innerHTML = `$${hi}`;
       notiB = true;
       notiC = false;
-      notiA = false;
+
+      let userSubcriptionamount = addSubcribtions(price.advanced);
+  
     }
 
     function pro() {
@@ -336,116 +341,78 @@ let hi = 0
 
 
       plan('Pro', yearPlan3El.innerHTML)
-       hi = total +  price.pro;
-      totalEl.innerHTML = `$${hi}`;
+    
       notiC = true;
       notiA = false;
       notiB = false;
+
+      let userSubcriptionamount = addSubcribtions(price.pro);
     }
 
-//==== my check ip
-const array = [];
 
-let textEl = document.querySelector('.text')
 
-function hey(message, prices, input) {
-  if(input.checked){
-    array.push(`  <div class="costs">
-                  <p class="cl-gray">
-                    ${message}
-                  </p>
-                  <p class="pg-4-price-1">
-                          ${prices}
-                  </p>
-                </div>`)
+
+
+
+
+
+
+
+
+//check boxes function
+function checkBox1(){
+  inputEl1.checked = !inputEl1.checked;// this checks and unchecks input box;
+  if (inputEl1.checked){
+       checkboxEl1.style.border = '1px solid blue';
+       service1El.style.display = 'flex';
+        sumCheckBox  +=  price.onService;
+        console.log(sumCheckBox)
+       
   }else{
-    array.splice(array.indexOf(`  <div class="costs">
-                  <p class="cl-gray">
-                    ${message}
-                  </p>
-                  <p class="pg-4-price-1">
-                    ${prices}
-                  </p>
-                </div>`),1)
+    checkboxEl1.style.border = '1px solid hsl(231, 11%, 63%)';
+    service1El.style.display = 'none';
+    sumCheckBox -=  price.onService;
+    
   }
-  servicesCon.innerHTML = array.join('');
+  // return sumCheckBox
 }
 
 
-let checkEl = false;
-let check2El = false;
-let check3El = false
-
-function checkBox1() {
-  inputEl1.checked = !inputEl1.checked;
-  hey('On servicessss', pg3Price1El.innerHTML,  inputEl1);
-  if (inputEl1.checked ){
-    checkEl = true
+function checkBox2(){
+  inputEl2.checked = !inputEl2.checked;// this checks and unchecks input box;
+  if (inputEl2.checked){
+       checkboxEl2.style.border = '1px solid blue';
+       service2El.style.display = 'flex';
+       sumCheckBox  +=  price.lgStorage;
+       
   }else{
-    checkEl = false
-  }
-  console.log(checkEl)
-}
-
-
-
-function checkBox2() {
- inputEl2.checked = !inputEl2.checked;
-  hey('Larger storage', pg3Price2El.innerHTML,  inputEl2);
-  if (inputEl2.checked ){
-    check2El = true
-  }else{
-    check2El = false
+    checkboxEl2.style.border = '1px solid hsl(231, 11%, 63%)';
+    service2El.style.display = 'none';
+     sumCheckBox  -=  price.lgStorage;
+     console.log(sumCheckBox)
   }
 }
 
-
-function checkBox3() {
-  inputEl3.checked = !inputEl3.checked;
-   hey('Custom pro', pg3Price3El.innerHTML,  inputEl3);
-   if (inputEl3.checked ){
-    check3El = true
+function checkBox3(){
+  inputEl3.checked = !inputEl3.checked;// this checks and unchecks input box;
+  if (inputEl3.checked){
+       checkboxEl3.style.border = '1px solid blue';
+       service3El.style.display = 'flex';
+       sumCheckBox  +=  price.customPro;
+       console.log(sumCheckBox)
+          
   }else{
-    check3El = false
+    checkboxEl3.style.border = '1px solid hsl(231, 11%, 63%)';
+    service3El.style.display = 'none';
+    sumCheckBox -=  price.customPro;
+    
+   
+    
   }
- }
-
-/*
+}
 
 
  
- 
 
-// Function to update checkboxes for monthly plans
-function updateCheckboxesForMonthlyPlan() {
-  // Automatically check or uncheck based on the selected plan's features
-  // Example: for a monthly plan, assume 'onService' and 'lgStorage' are always included
 
-  // Update the services display accordingly
-  if (inputEl1.checked) {
-      hey('On service', pg3Price1El.innerHTML, inputEl1);
-  }
-  if (inputEl2.checked) {
-      hey('Larger storage', pg3Price2El.innerHTML, inputEl2);
-  }
-  if (inputEl3.checked) {
-      hey('Custom pro', pg3Price3El.innerHTML, inputEl3);
-  }
-}
 
-// Function to update checkboxes for yearly plans
-function updateCheckboxesForYearlyPlan() {
-  // Automatically check or uncheck based on the selected plan's features
-  // Example: for a yearly plan, assume all services are included
-  // Update the services display accordingly
-  if (inputEl1.checked) {
-      hey('On service', pg3Price1El.innerHTML, inputEl1);
-  }
-  if (inputEl2.checked) {
-      hey('Larger storage', pg3Price2El.innerHTML, inputEl2);
-  }
-  if (inputEl3.checked) {
-      hey('Custom pro', pg3Price3El.innerHTML, inputEl3);
-  }
-}
-*/
