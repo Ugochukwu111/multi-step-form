@@ -78,7 +78,7 @@ let inputEl3 =  document.querySelector('.js-check-input-3');
 
 // my object which will contain all my prices
 let price = {
-  arcade: 9,
+  arcade: 9 + 'here',
   advanced: 12,
   pro: 15,
 
@@ -189,6 +189,9 @@ let notiC =  false ; //  my notifier for pro
 
 let amount = 0;
 let sumCheckBox = 0;
+let  userSubcriptionamount  = 0;
+ let finalTotal;
+arcade()
 
     function switchPlan() {
       if(susPlanBtn === 0) {
@@ -216,8 +219,8 @@ let sumCheckBox = 0;
           pg4Price3El.innerHTML = `$${price.customPro}/mo`;
 
       
-          sumCheckBox = sumCheckBox * 0.1
-          console.log(sumCheckBox)  ;
+          sumCheckBox = sumCheckBox * 0.1;
+
         
         }
       else if (susPlanBtn === 1) {
@@ -246,23 +249,28 @@ let sumCheckBox = 0;
         pg4Price2El.innerHTML = `$${price.lgStorage}/yr`
          pg4Price3El.innerHTML = `$${price.customPro}/yr`;
 
-         sumCheckBox = sumCheckBox * 10
-         console.log(sumCheckBox)
-    
+         sumCheckBox = sumCheckBox * 10;
+        
       }
 
       
 
   if (notiA === true) {
     arcade()
+     finalTotal = sumCheckBox + userSubcriptionamount;
+    console.log(finalTotal)
   }
 
   if (notiB === true) {
     advance()
+    finalTotal = sumCheckBox + userSubcriptionamount;
+    console.log(finalTotal)
   }
 
   if (notiC=== true) {
     pro()
+    finalTotal = sumCheckBox + userSubcriptionamount;
+    console.log(finalTotal)
   }
        
 
@@ -281,10 +289,6 @@ function plan(name, value) {
 }
 
 
-function addSubcribtions(amount) {
-  let amountOfSubcriptions = amount;
-  return amountOfSubcriptions;
-}
 
 
     function arcade() {
@@ -302,12 +306,12 @@ function addSubcribtions(amount) {
       notiA = true;
       notiB = false;
       notiC = false;
-
-      let userSubcriptionamount = addSubcribtions(price.arcade);
-
+        
+     userSubcriptionamount = price.arcade;
+     console.log(userSubcriptionamount)
       
     }   
-    arcade()
+    // arcade()
  
     function advance() {
       console.log('advanced clicked')
@@ -323,8 +327,9 @@ function addSubcribtions(amount) {
       plan('Advanced', yearPlan2El.innerHTML);
       notiB = true;
       notiC = false;
+      notiA = false
 
-      let userSubcriptionamount = addSubcribtions(price.advanced);
+       userSubcriptionamount = price.advanced;
   
     }
 
@@ -346,7 +351,7 @@ function addSubcribtions(amount) {
       notiA = false;
       notiB = false;
 
-      let userSubcriptionamount = addSubcribtions(price.pro);
+     userSubcriptionamount = price.pro;
     }
 
 
@@ -374,7 +379,7 @@ function checkBox1(){
     sumCheckBox -=  price.onService;
     
   }
-  // return sumCheckBox
+ 
 }
 
 
