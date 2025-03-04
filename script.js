@@ -78,7 +78,7 @@ let inputEl3 =  document.querySelector('.js-check-input-3');
 
 // my object which will contain all my prices
 let price = {
-  arcade: 9 + 'here',
+  arcade: 9,
   advanced: 12,
   pro: 15,
 
@@ -190,11 +190,12 @@ let notiC =  false ; //  my notifier for pro
 let amount = 0;
 let sumCheckBox = 0;
 let  userSubcriptionamount  = 0;
- let finalTotal;
+ let finalTotal = 0;
 arcade()
-
+console.log(userSubcriptionamount)
     function switchPlan() {
       if(susPlanBtn === 0) {
+
         susPlanBtn++;
         onEL.style.transform = 'translateX(0%)';
          
@@ -257,20 +258,17 @@ arcade()
 
   if (notiA === true) {
     arcade()
-     finalTotal = sumCheckBox + userSubcriptionamount;
-    console.log(finalTotal)
+    
   }
 
   if (notiB === true) {
     advance()
-    finalTotal = sumCheckBox + userSubcriptionamount;
-    console.log(finalTotal)
+   
   }
 
   if (notiC=== true) {
     pro()
-    finalTotal = sumCheckBox + userSubcriptionamount;
-    console.log(finalTotal)
+  
   }
        
 
@@ -292,6 +290,21 @@ function plan(name, value) {
 
 
     function arcade() {
+  //     if (notiB === true){
+  //       finalTotal -= price.advanced;
+  //       console.log(finalTotal);
+  //       finalTotal += price.arcade;
+  //       console.log(finalTotal)
+  //    }
+  //    else if (notiC === true){
+  //     finalTotal -= price.pro;
+  //     console.log(finalTotal);
+  //     finalTotal += price.arcade;
+  //     console.log(finalTotal)
+  //  }
+
+ 
+
       arcadeEl.style.border = '1px solid hsl(243, 100%, 62%)';
       arcadeEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
 
@@ -308,13 +321,27 @@ function plan(name, value) {
       notiC = false;
         
      userSubcriptionamount = price.arcade;
-     console.log(userSubcriptionamount)
-      
+     finalTotal = sumCheckBox + userSubcriptionamount;
+     console.log(finalTotal)
     }   
     // arcade()
  
     function advance() {
-      console.log('advanced clicked')
+  //     if (notiA === true){
+  //       finalTotal -= price.arcade;
+  //       console.log(finalTotal);
+  //       finalTotal += price.advanced;
+  //       console.log(finalTotal)
+  //    }
+  //    else if (notiC === true){
+  //     finalTotal -= price.pro;
+  //     console.log(finalTotal);
+  //     finalTotal += price.advanced;
+  //     console.log(finalTotal)
+  //  }
+
+
+
       advanceEl.style.border = '1px solid hsl(243, 100%, 62%)';
       advanceEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
 
@@ -330,10 +357,27 @@ function plan(name, value) {
       notiA = false
 
        userSubcriptionamount = price.advanced;
+       finalTotal = sumCheckBox + userSubcriptionamount;
+       console.log(finalTotal)
   
     }
 
     function pro() {
+  //     if (notiA === true){
+  //       finalTotal -= price.arcade;
+  //       console.log(finalTotal);
+  //       finalTotal += price.pro;
+  //       console.log(finalTotal)
+  //    }
+  //    else if (notiB === true){
+  //     finalTotal -= price.advanced;
+  //     console.log(finalTotal);
+  //     finalTotal += price.pro;
+  //     console.log(finalTotal)
+  //  }
+
+
+
       proEl.style.border = '1px solid hsl(243, 100%, 62%)';
       proEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
 
@@ -352,6 +396,9 @@ function plan(name, value) {
       notiB = false;
 
      userSubcriptionamount = price.pro;
+     
+     finalTotal = sumCheckBox + userSubcriptionamount;
+     console.log(finalTotal)
     }
 
 
@@ -372,12 +419,17 @@ function checkBox1(){
        service1El.style.display = 'flex';
         sumCheckBox  +=  price.onService;
         console.log(sumCheckBox)
+        finalTotal += price.onService
+        console.log(finalTotal)
        
   }else{
     checkboxEl1.style.border = '1px solid hsl(231, 11%, 63%)';
     service1El.style.display = 'none';
+    finalTotal -= price.onService
     sumCheckBox -=  price.onService;
-    
+    console.log(sumCheckBox)
+  
+    console.log(finalTotal)
   }
  
 }
@@ -389,12 +441,16 @@ function checkBox2(){
        checkboxEl2.style.border = '1px solid blue';
        service2El.style.display = 'flex';
        sumCheckBox  +=  price.lgStorage;
-       
+       console.log(sumCheckBox)
+       finalTotal += price.lgStorage
+        console.log(finalTotal)
   }else{
     checkboxEl2.style.border = '1px solid hsl(231, 11%, 63%)';
     service2El.style.display = 'none';
+    finalTotal -= price.lgStorage
      sumCheckBox  -=  price.lgStorage;
      console.log(sumCheckBox)
+     console.log(finalTotal)
   }
 }
 
@@ -405,13 +461,18 @@ function checkBox3(){
        service3El.style.display = 'flex';
        sumCheckBox  +=  price.customPro;
        console.log(sumCheckBox)
+       finalTotal += price.customPro
+       console.log(finalTotal)
+      
           
   }else{
     checkboxEl3.style.border = '1px solid hsl(231, 11%, 63%)';
     service3El.style.display = 'none';
+    finalTotal -= price.customPro;
     sumCheckBox -=  price.customPro;
     
-   
+    console.log(sumCheckBox)
+    console.log(finalTotal)
     
   }
 }
