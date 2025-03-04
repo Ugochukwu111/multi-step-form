@@ -40,6 +40,11 @@ let pg4Price3El = document.querySelector('.pg-4-price-3');
 
 let totalEl = document.querySelector('.total');
 
+//function displays the final total
+function displayTotal(total) {
+  totalEl.textContent = total
+}
+
 // eleme
 let costEl = document.querySelector('.costs');
 let servicesCon = document.querySelector('.services');//
@@ -187,12 +192,12 @@ let notiC =  false ; //  my notifier for pro
 
 
 
-let amount = 0;
+
 let sumCheckBox = 0;
 let  userSubcriptionamount  = 0;
  let finalTotal = 0;
 arcade()
-console.log(userSubcriptionamount)
+
     function switchPlan() {
       if(susPlanBtn === 0) {
 
@@ -290,20 +295,6 @@ function plan(name, value) {
 
 
     function arcade() {
-  //     if (notiB === true){
-  //       finalTotal -= price.advanced;
-  //       console.log(finalTotal);
-  //       finalTotal += price.arcade;
-  //       console.log(finalTotal)
-  //    }
-  //    else if (notiC === true){
-  //     finalTotal -= price.pro;
-  //     console.log(finalTotal);
-  //     finalTotal += price.arcade;
-  //     console.log(finalTotal)
-  //  }
-
- 
 
       arcadeEl.style.border = '1px solid hsl(243, 100%, 62%)';
       arcadeEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
@@ -323,24 +314,11 @@ function plan(name, value) {
      userSubcriptionamount = price.arcade;
      finalTotal = sumCheckBox + userSubcriptionamount;
      console.log(finalTotal)
+     displayTotal(finalTotal)
     }   
-    // arcade()
+    
  
     function advance() {
-  //     if (notiA === true){
-  //       finalTotal -= price.arcade;
-  //       console.log(finalTotal);
-  //       finalTotal += price.advanced;
-  //       console.log(finalTotal)
-  //    }
-  //    else if (notiC === true){
-  //     finalTotal -= price.pro;
-  //     console.log(finalTotal);
-  //     finalTotal += price.advanced;
-  //     console.log(finalTotal)
-  //  }
-
-
 
       advanceEl.style.border = '1px solid hsl(243, 100%, 62%)';
       advanceEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
@@ -359,24 +337,10 @@ function plan(name, value) {
        userSubcriptionamount = price.advanced;
        finalTotal = sumCheckBox + userSubcriptionamount;
        console.log(finalTotal)
-  
+       displayTotal(finalTotal)
     }
 
     function pro() {
-  //     if (notiA === true){
-  //       finalTotal -= price.arcade;
-  //       console.log(finalTotal);
-  //       finalTotal += price.pro;
-  //       console.log(finalTotal)
-  //    }
-  //    else if (notiB === true){
-  //     finalTotal -= price.advanced;
-  //     console.log(finalTotal);
-  //     finalTotal += price.pro;
-  //     console.log(finalTotal)
-  //  }
-
-
 
       proEl.style.border = '1px solid hsl(243, 100%, 62%)';
       proEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
@@ -399,6 +363,7 @@ function plan(name, value) {
      
      finalTotal = sumCheckBox + userSubcriptionamount;
      console.log(finalTotal)
+     displayTotal(finalTotal)
     }
 
 
@@ -421,6 +386,7 @@ function checkBox1(){
         console.log(sumCheckBox)
         finalTotal += price.onService
         console.log(finalTotal)
+        displayTotal(finalTotal)
        
   }else{
     checkboxEl1.style.border = '1px solid hsl(231, 11%, 63%)';
@@ -430,6 +396,7 @@ function checkBox1(){
     console.log(sumCheckBox)
   
     console.log(finalTotal)
+    displayTotal(finalTotal)
   }
  
 }
@@ -444,6 +411,7 @@ function checkBox2(){
        console.log(sumCheckBox)
        finalTotal += price.lgStorage
         console.log(finalTotal)
+        displayTotal(finalTotal)
   }else{
     checkboxEl2.style.border = '1px solid hsl(231, 11%, 63%)';
     service2El.style.display = 'none';
@@ -451,6 +419,7 @@ function checkBox2(){
      sumCheckBox  -=  price.lgStorage;
      console.log(sumCheckBox)
      console.log(finalTotal)
+     displayTotal(finalTotal)
   }
 }
 
@@ -463,6 +432,7 @@ function checkBox3(){
        console.log(sumCheckBox)
        finalTotal += price.customPro
        console.log(finalTotal)
+       displayTotal(finalTotal) //this funtion display the result
       
           
   }else{
@@ -473,6 +443,7 @@ function checkBox3(){
     
     console.log(sumCheckBox)
     console.log(finalTotal)
+    displayTotal(finalTotal)
     
   }
 }
