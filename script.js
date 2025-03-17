@@ -34,10 +34,6 @@ let pg4Price1El = document.querySelector('.pg-4-price-1');
 let pg4Price2El = document.querySelector('.pg-4-price-2');
 let pg4Price3El = document.querySelector('.pg-4-price-3');
 
-
-//pg3Price1El.style.color = 'red'
-//
-
 let totalEl = document.querySelector('.total');
 
 //function displays the final total
@@ -78,7 +74,20 @@ let inputEl3 =  document.querySelector('.js-check-input-3');
  let service2El = document.querySelector('.js-service-2');
  let service3El = document.querySelector('.js-service-3');
 
+//functions that handle the bkgcolor(number indicators) of the current step
+function indicatorBackgroundColor( nextNumElement){
+  nextNumElement.classList.add('bkg-current-indicator')
+}
+function removeIndicatorBackgroundColor( nextNumElement){
+  nextNumElement.classList.remove('bkg-current-indicator')
+}
+ indicatorBackgroundColor(no1)
 
+ //function below is responsible for displaying the form steps
+ function currentFormStepPage(prvFormPage, nextFormPage){
+  prvFormPage.style.display = 'none';
+  nextFormPage.style.display = 'flex'
+ }
 
 
 // my object which will contain all my prices
@@ -91,106 +100,82 @@ let price = {
   lgStorage : 2,
   customPro : 2
 }
+ 
 
+let pages = [main1,main2,main3,main4];//this array contains each html step of the form
 
-  
-
-
-
+// this array messages  handle error from form 
 let messages = [];
 
-let reveal = false
-
       formEl.addEventListener('submit',(event) => {
-        count++
-     if (count === 1) {
- 
-      if (inputPhone.value === '' || inputPhone.value === null ) {
-         messages.push('error');
+        event.preventDefault();
         
+        for (let i = 0; i < pages.length; i++) {
+        if (inputPhone.value === '' || inputPhone.value === null ) {
+          messages.push('error'); 
+          console.log(messages);
+          break // this stops the loop
+       }
       }
     
-      if (messages.length > 0){
-      errorEl.innerHTML = 'This field is required';
-      
-    }
+      // code below handles my user incorrect phone no entry
+       let userPhoneNumber =  Number(inputPhone.value)
     
-    if (inputPhone.value.length < 5){
-      count = 0
-    }   
-  }
+      if (inputPhone.value === ''){
+        errorEl.textContent = 'This field is required'; 
+        console.log(messages) 
+      } else if(inputPhone.value.length < 9 ){
+        errorEl.textContent = 'number is too short'; 
+      }else if(isNaN(userPhoneNumber) || inputPhone.value.trim() === ''){
+        errorEl.textContent = 'NaN';
+      }else if (!isNaN(userPhoneNumber) && inputPhone.value.length > 9){
+        errorEl.textContent = ''; 
+        messages.length = 0;
+        console.log(messages)
+        count++
+      }
 
-  event.preventDefault();
-    
-  if (count === 2){
-     main1.style.display = 'none';
-     main2.style.display = 'flex';
-  }
-  
-   if (count === 3) {
-     main1.style.display = 'none';
-     main2.style.display = 'none';
-     main3.style.display = 'flex';
-   }
 
-  if(count === 4) {
-    main1.style.display = 'none';
-    main2.style.display = 'none';
-    main3.style.display = 'none';
-    main4.style.display = 'flex';
-  }
-
-  
-  if(count === 5) {
-    main1.style.display = 'none';
-    main2.style.display = 'none';
-    main3.style.display = 'none';
-   
-  }
+       if (count === 1){
+        console.log('count is 1')
+        currentFormStepPage(main1, main2)
+        indicatorBackgroundColor(no2)
+       }else if (count === 2) {
+        currentFormStepPage(main2, main3)
+        indicatorBackgroundColor(no3)
+       }else if (count === 3){
+        currentFormStepPage(main3, main4)
+        indicatorBackgroundColor(no4)
+       }
     })
     
    
-
+  //  this function handles prv page
     function prvBtn() {
       count--;
-      if (count <= 0){
-        count = 1;
+      if (count < 0){
+        count = 0
       }
-      if (count === 1){
-        main1.style.display = 'flex';
-        main2.style.display = 'none';
-
-      }
-      if (count === 2){
-        main1.style.display = 'none';
-        main2.style.display = 'flex';
-        main4.style.display = 'none';
-        main3.style.display = 'none';
-      }
-      if (count === 3){
-        main1.style.display = 'none';
-        main2.style.display = 'none';
-        main4.style.display = 'none';
-        main3.style.display = 'flex';
-      }
-      if (count === 4){
-        main1.style.display = 'none';
-        main2.style.display = 'none';
-        main3.style.display = 'none';
-        main4.style.display = 'flex';
-      }
-    //console.log(count)
+      console.log(count)
+      if (count === 0){
+        console.log('positive')
+        currentFormStepPage(main2, main1)
+        removeIndicatorBackgroundColor(no2)
+      }if (count === 1) {
+        currentFormStepPage(main3, main2)
+        removeIndicatorBackgroundColor(no3)
+       } if (count === 2){
+        currentFormStepPage(main4, main3)
+        removeIndicatorBackgroundColor(no4)
+       }
     }
 
 
     let susPlanBtn = 1;
 
-let notiA = false ; // my notifier for arcade
-let notiB = false ; // my notifier for advance
-let notiC =  false ; //  my notifier for pro
-
-
-
+let notiA = false ; // my flag for arcade  
+let notiB = false ; // my flag for advance
+let notiC =  false ; //my flag for pro
 
 
 let sumCheckBox = 0;
@@ -257,32 +242,19 @@ arcade()
 
          sumCheckBox = sumCheckBox * 10;
         
-      }
-
-      
+      }  
 
   if (notiA === true) {
-    arcade()
-    
-  }
-
-  if (notiB === true) {
+    arcade()   
+  }else if(notiB === true) {
     advance()
-   
-  }
-
-  if (notiC=== true) {
+  }else if (notiC=== true) {
     pro()
-  
-  }
-       
-
-  
+  }   
     }
   
 
-
-
+//  reuseable functions for my subscriptioon plans!!
 function plan(name, value) {
     costEl.innerHTML = `<div>
                   <p class="fw">${name}(monthly)</p>
@@ -290,21 +262,24 @@ function plan(name, value) {
                 </div>
                 <p class="fw pg-4-price-0">+${value}</p>`
 }
+//reuseable function for my subscription plan background colors
+ function subcriptionBackgroundColor(subcription1, subcription2, subcription3){
+  subcription1.style.border = '1px solid hsl(243, 100%, 62%)';
+  subcription1.style.backgroundColor = '  hsl(217, 100%, 97%)';
+
+  subcription2.style.backgroundColor = 'transparent';
+  subcription2.style.border = '1px solid hsl(231, 11%, 63%)';
+
+  subcription3.backgroundColor = 'transparent';
+  subcription3.border = '1px solid hsl(231, 11%, 63%)';
+
+ }
 
 
 
 
     function arcade() {
-
-      arcadeEl.style.border = '1px solid hsl(243, 100%, 62%)';
-      arcadeEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
-
-      advanceEl.style.backgroundColor = 'transparent';
-      advanceEl.style.border = '1px solid hsl(231, 11%, 63%)';
-
-      proEl.style.backgroundColor = 'transparent';
-      proEl.style.border = '1px solid hsl(231, 11%, 63%)';
-
+      subcriptionBackgroundColor(arcadeEl, advanceEl, proEl)
       plan('Arcade', yearPlan1El.innerHTML);
 
       notiA = true;
@@ -319,17 +294,9 @@ function plan(name, value) {
     
  
     function advance() {
-
-      advanceEl.style.border = '1px solid hsl(243, 100%, 62%)';
-      advanceEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
-
-      arcadeEl.style.backgroundColor = 'transparent';
-      arcadeEl.style.border = '1px solid hsl(231, 11%, 63%)';
-
-      proEl.style.backgroundColor = 'transparent';
-      proEl.style.border = '1px solid hsl(231, 11%, 63%)';
-
+      subcriptionBackgroundColor(advanceEl, arcadeEl, proEl);
       plan('Advanced', yearPlan2El.innerHTML);
+
       notiB = true;
       notiC = false;
       notiA = false
@@ -341,18 +308,7 @@ function plan(name, value) {
     }
 
     function pro() {
-
-      proEl.style.border = '1px solid hsl(243, 100%, 62%)';
-      proEl.style.backgroundColor = '  hsl(217, 100%, 97%)';
-
-      advanceEl.style.backgroundColor = 'transparent';
-      advanceEl.style.border = '1px solid hsl(231, 11%, 63%)';
-
-
-      arcadeEl.style.backgroundColor = 'transparent';
-      arcadeEl.style.border = '1px solid hsl(231, 11%, 63%)';
-
-
+      subcriptionBackgroundColor(proEl, advanceEl, arcadeEl)
       plan('Pro', yearPlan3El.innerHTML)
     
       notiC = true;
@@ -360,7 +316,6 @@ function plan(name, value) {
       notiB = false;
 
      userSubcriptionamount = price.pro;
-     
      finalTotal = sumCheckBox + userSubcriptionamount;
      console.log(finalTotal)
      displayTotal(finalTotal)
@@ -368,39 +323,23 @@ function plan(name, value) {
 
 
 
-
-
-
-
-
-
-
-
-//check boxes function
+//===============check boxes functions
 function checkBox1(){
   inputEl1.checked = !inputEl1.checked;// this checks and unchecks input box;
   if (inputEl1.checked){
        checkboxEl1.style.border = '1px solid blue';
        service1El.style.display = 'flex';
         sumCheckBox  +=  price.onService;
-        console.log(sumCheckBox)
         finalTotal += price.onService
-        console.log(finalTotal)
-        displayTotal(finalTotal)
-       
+        displayTotal(finalTotal)     
   }else{
     checkboxEl1.style.border = '1px solid hsl(231, 11%, 63%)';
     service1El.style.display = 'none';
     finalTotal -= price.onService
     sumCheckBox -=  price.onService;
-    console.log(sumCheckBox)
-  
-    console.log(finalTotal)
     displayTotal(finalTotal)
   }
- 
 }
-
 
 function checkBox2(){
   inputEl2.checked = !inputEl2.checked;// this checks and unchecks input box;
@@ -408,17 +347,13 @@ function checkBox2(){
        checkboxEl2.style.border = '1px solid blue';
        service2El.style.display = 'flex';
        sumCheckBox  +=  price.lgStorage;
-       console.log(sumCheckBox)
        finalTotal += price.lgStorage
-        console.log(finalTotal)
         displayTotal(finalTotal)
   }else{
     checkboxEl2.style.border = '1px solid hsl(231, 11%, 63%)';
     service2El.style.display = 'none';
     finalTotal -= price.lgStorage
      sumCheckBox  -=  price.lgStorage;
-     console.log(sumCheckBox)
-     console.log(finalTotal)
      displayTotal(finalTotal)
   }
 }
@@ -429,20 +364,13 @@ function checkBox3(){
        checkboxEl3.style.border = '1px solid blue';
        service3El.style.display = 'flex';
        sumCheckBox  +=  price.customPro;
-       console.log(sumCheckBox)
        finalTotal += price.customPro
-       console.log(finalTotal)
-       displayTotal(finalTotal) //this funtion display the result
-      
-          
+       displayTotal(finalTotal) //this funtion display the result      
   }else{
     checkboxEl3.style.border = '1px solid hsl(231, 11%, 63%)';
     service3El.style.display = 'none';
     finalTotal -= price.customPro;
     sumCheckBox -=  price.customPro;
-    
-    console.log(sumCheckBox)
-    console.log(finalTotal)
     displayTotal(finalTotal)
     
   }

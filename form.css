@@ -98,6 +98,14 @@ button{
 
 }
 
+/* using the class below as my classList  in js*/
+.current-form-d-flex{
+  display: flex;
+}
+.current-form-d-none{
+  display: none;
+}
+
 .flex{
   display: flex;
   align-items: center;
@@ -115,6 +123,15 @@ button{
  margin-right: .5em;
  justify-content: center;
  align-items: center;
+}
+
+/* am using this class in js as a clasList to change current
+background color of the current step form */
+.bkg-current-indicator{
+  color: var(--Marine-blue);
+  background-color: var(--Light-blue);
+  font-weight: 700;
+  transition: all 300ms ease;
 }
 
 
