@@ -14,11 +14,13 @@ let formEl =  document.getElementById('form'); //
 
 let inputPhone = document.getElementById('ph-no') // phone number input
 
-// these are html elements of my main form
-let main1 = document.querySelector('.main-form-1');
+// these are html elements of my main form steps
+let main1 = document.querySelector('.main-form-1'); 
 let main2 = document.querySelector('.main-form-2');
 let main3 = document.querySelector('.main-form-3');
 let main4 = document.querySelector('.main-form-4');
+let main5 = document.querySelector('.main-form-5');
+
 
 
 // element for my prices
@@ -45,26 +47,20 @@ function displayTotal(total) {
 let costEl = document.querySelector('.costs');
 let servicesCon = document.querySelector('.services');//
 let onbtnEL = document.querySelector('.on-btn');//biger container that holds my inner btn that moves that changes in subcription plan
+let onEL = document.querySelector('.on');//the actual element that moves when you switch plan
 
 
-let onEL = document.querySelector('.on');
-
-
-// my subscribtion plans elementsboxes arcade
+// my subscribtion plans elementsboxes 
 let arcadeEl =  document.querySelector('.arcade');
 let advanceEl =  document.querySelector('.advance');
 let proEl =  document.querySelector('.pro');
 
-//checkboxes
+//checkboxes elements
 let checkboxEl1 = document.querySelector('.check-box-1');
 let checkboxEl2 = document.querySelector('.check-box-2');
 let checkboxEl3 = document.querySelector('.check-box-3');
 
-
 //my input check element  
-//let checkInput1 =  document.querySelector('.check-box-1');
-
-
 let inputEl1 =  document.querySelector('.js-check-input-1');
 let inputEl2 =  document.querySelector('.js-check-input-2');
 let inputEl3 =  document.querySelector('.js-check-input-3');
@@ -74,16 +70,21 @@ let inputEl3 =  document.querySelector('.js-check-input-3');
  let service2El = document.querySelector('.js-service-2');
  let service3El = document.querySelector('.js-service-3');
 
-//functions that handle the bkgcolor(number indicators) of the current step
+ //i want to get all my but elements so i can remove it at the end of the form
+
+ const allButtons = document.getElementsByTagName("button");
+ console.log(allButtons)
+
+//functions that handle the display of bkgcolor(number indicators) of the current step
 function indicatorBackgroundColor( nextNumElement){
   nextNumElement.classList.add('bkg-current-indicator')
 }
 function removeIndicatorBackgroundColor( nextNumElement){
   nextNumElement.classList.remove('bkg-current-indicator')
 }
- indicatorBackgroundColor(no1)
+ indicatorBackgroundColor(no1)//my first step 1 has a bkg as the page loads
 
- //function below is responsible for displaying the form steps
+ //function below is responsible for displaying the form main steps
  function currentFormStepPage(prvFormPage, nextFormPage){
   prvFormPage.style.display = 'none';
   nextFormPage.style.display = 'flex'
@@ -102,13 +103,14 @@ let price = {
 }
  
 
-let pages = [main1,main2,main3,main4];//this array contains each html step of the form
+let pages = [main1,main2,main3,main4, main5];//this array contains each html step of the form
 
-// this array messages  handle error from form 
+// this array messages  takes in error from form 
 let messages = [];
 
       formEl.addEventListener('submit',(event) => {
-        event.preventDefault();
+      
+      
         
         for (let i = 0; i < pages.length; i++) {
         if (inputPhone.value === '' || inputPhone.value === null ) {
@@ -146,7 +148,18 @@ let messages = [];
        }else if (count === 3){
         currentFormStepPage(main3, main4)
         indicatorBackgroundColor(no4)
-       }
+       }else if (count === 4){
+        currentFormStepPage(main4, main5)
+        indicatorBackgroundColor(no4)
+        //gets all buttons to apply style and remove it at final step
+        for (let i = 0; i < allButtons.length; i++){
+             console.log(allButtons[i].classList.add('current-form-d-none'))
+        }
+      }
+      if (count < 4){
+        event.preventDefault();
+        console.log('prevent for submitting')
+      }
     })
     
    
