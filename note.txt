@@ -1,0 +1,2 @@
+this i learnt from this project
+1, firefox has a default of saving inputs states

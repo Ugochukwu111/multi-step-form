@@ -59,6 +59,14 @@ button{
   border: none;
   color: var(--White);
   background-color: var(--Marine-blue);
+  transition: all 250ms ease;
+}
+
+button:hover{
+  opacity: .85;
+}
+button:active{
+  opacity: .69;
 }
 
 .fw{
@@ -79,8 +87,8 @@ button{
 
 .container{
   background-color: var(--White);
-  width: 680px;
-  height: 400px;
+  width: 45rem;
+  height: 25rem;
   border-radius: .5rem;
   padding: 1em;
   display: flex;
@@ -244,15 +252,19 @@ form{
   display: none;
   flex-direction: column;
   width: 100%;
-  height: 80%;
   padding: 1em 0;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
+
+
 
 .check{
   display: flex;
   justify-content: space-between;
 }
+
 
 .ha{
   display: flex;
@@ -264,12 +276,19 @@ form{
   font-weight: 700;
 }
 
+.hidden-checkbox{
+  position: relative;
+  z-index: -1;
+}
+
 .checks{
-  height: 80%;
   display: flex;
   margin-top: 1em;
   flex-direction: column;
   justify-content: space-between;
+}
+.checks >*{
+  margin-bottom: 1em;
 }
 
 .check-box{
@@ -280,11 +299,14 @@ form{
   align-items: center;
   padding: .5em;
   border-radius: .5rem;
+  background-color: transparent;
 }
 
 .checked{
   margin-right: 1em;
   width: fit-content;
+  position: relative;
+  z-index: -1;
 }
 
 
@@ -343,7 +365,7 @@ form{
 
 .btn-box{
   width: 100%;
-  height: 10rem;
+  height: 5rem;
   padding: 1em 0;
   box-sizing: border-box;
   display: flex;
@@ -382,9 +404,8 @@ form{
 
   .main-form-1{
     margin-top: -5em;
-    max-width: 340px;
+    max-width: 350px;
     margin-inline:auto;
-    height: 18rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -419,9 +440,8 @@ form{
   /* media for step 2 */
   .main-form-2{
     margin-top: -5em;
-    max-width: 340px;
+    max-width: 350px;
     margin-inline:auto;
-    height: 20rem;
     padding: 1em;
     display: none;
     flex-direction: column;
@@ -449,13 +469,13 @@ form{
   /* media quesr for step 3 */
   .main-form-3{
     margin-top: -5em;
-    max-width: 340px;
+    max-width: 350px;
     margin-inline:auto;
-    height: 20rem;
     padding: 1em;
     display: none;
     border-radius: 1rem;
     background-color: var(--White);
+    
   }
 
   .check-box{
@@ -464,9 +484,8 @@ form{
 
   .main-form-4{
    margin-top: -5em;
-    max-width: 340px;
+    max-width: 350px;
     margin-inline:auto;
-    height: 20rem;
     padding: 1em;
     display: none;
     border-radius: 1rem;
