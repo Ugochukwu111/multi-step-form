@@ -50,6 +50,7 @@ let onbtnEL = document.querySelector('.on-btn');//biger container that holds my 
 let onEL = document.querySelector('.on');//the actual element that moves when you switch plan
 
 
+
 // my subscribtion plans elementsboxes 
 let arcadeEl =  document.querySelector('.arcade');
 let advanceEl =  document.querySelector('.advance');
@@ -73,7 +74,6 @@ let inputEl3 =  document.querySelector('.js-check-input-3');
  //i want to get all my but elements so i can remove it at the end of the form
 
  const allButtons = document.getElementsByTagName("button");
- console.log(allButtons)
 
 //functions that handle the display of bkgcolor(number indicators) of the current step
 function indicatorBackgroundColor( nextNumElement){
@@ -115,7 +115,6 @@ let messages = [];
         for (let i = 0; i < pages.length; i++) {
         if (inputPhone.value === '' || inputPhone.value === null ) {
           messages.push('error'); 
-          console.log(messages);
           break // this stops the loop
        }
       }
@@ -125,7 +124,6 @@ let messages = [];
     
       if (inputPhone.value === ''){
         errorEl.textContent = 'This field is required'; 
-        console.log(messages) 
       } else if(inputPhone.value.length < 9 ){
         errorEl.textContent = 'number is too short'; 
       }else if(isNaN(userPhoneNumber) || inputPhone.value.trim() === ''){
@@ -133,13 +131,11 @@ let messages = [];
       }else if (!isNaN(userPhoneNumber) && inputPhone.value.length > 9){
         errorEl.textContent = ''; 
         messages.length = 0;
-        console.log(messages)
         count++
       }
 
 
        if (count === 1){
-        console.log('count is 1')
         currentFormStepPage(main1, main2)
         indicatorBackgroundColor(no2)
        }else if (count === 2) {
@@ -153,12 +149,11 @@ let messages = [];
         indicatorBackgroundColor(no4)
         //gets all buttons to apply style and remove it at final step
         for (let i = 0; i < allButtons.length; i++){
-             console.log(allButtons[i].classList.add('current-form-d-none'))
+             allButtons[i].classList.add('current-form-d-none')
         }
       }
       if (count < 4){
         event.preventDefault();
-        console.log('prevent for submitting')
       }
     })
     
@@ -169,9 +164,7 @@ let messages = [];
       if (count < 0){
         count = 0
       }
-      console.log(count)
       if (count === 0){
-        console.log('positive')
         currentFormStepPage(main2, main1)
         removeIndicatorBackgroundColor(no2)
       }if (count === 1) {
@@ -197,8 +190,10 @@ let  userSubcriptionamount  = 0;
 arcade()
 
     function switchPlan() {
-      if(susPlanBtn === 0) {
 
+      if(susPlanBtn === 0) {
+        onbtnEL.previousElementSibling.classList.add('pur-blu')
+        onbtnEL.nextElementSibling.classList.remove('pur-blu')
         susPlanBtn++;
         onEL.style.transform = 'translateX(0%)';
          
@@ -228,7 +223,8 @@ arcade()
         
         }
       else if (susPlanBtn === 1) {
-
+        onbtnEL.previousElementSibling.classList.remove('pur-blu')
+        onbtnEL.nextElementSibling.classList.add('pur-blu')
         susPlanBtn--;
         onEL.style.transform = 'translateX(120%)';
         price.arcade = 90;
@@ -265,26 +261,28 @@ arcade()
     pro()
   }   
     }
+
+    switchPlan()
   
 
 //  reuseable functions for my subscriptioon plans!!
 function plan(name, value) {
     costEl.innerHTML = `<div>
                   <p class="fw">${name}(monthly)</p>
-                <p class="cl-gray"><u>change</u></p>
+                <p onclick="switchPlan()" class="cl-gray "><u class = "pur-blu hover fw">change</u></p>
                 </div>
                 <p class="fw pg-4-price-0">+${value}</p>`
 }
 //reuseable function for my subscription plan background colors
  function subcriptionBackgroundColor(subcription1, subcription2, subcription3){
   subcription1.style.border = '1px solid hsl(243, 100%, 62%)';
-  subcription1.style.backgroundColor = '  hsl(217, 100%, 97%)';
+  subcription1.style.backgroundColor = 'hsl(217, 100%, 97%)';
 
   subcription2.style.backgroundColor = 'transparent';
   subcription2.style.border = '1px solid hsl(231, 11%, 63%)';
 
-  subcription3.backgroundColor = 'transparent';
-  subcription3.border = '1px solid hsl(231, 11%, 63%)';
+  subcription3.style.backgroundColor = 'transparent';
+  subcription3.style.border = '1px solid hsl(231, 11%, 63%)';
 
  }
 
@@ -301,7 +299,6 @@ function plan(name, value) {
         
      userSubcriptionamount = price.arcade;
      finalTotal = sumCheckBox + userSubcriptionamount;
-     console.log(finalTotal)
      displayTotal(finalTotal)
     }   
     
@@ -316,12 +313,11 @@ function plan(name, value) {
 
        userSubcriptionamount = price.advanced;
        finalTotal = sumCheckBox + userSubcriptionamount;
-       console.log(finalTotal)
        displayTotal(finalTotal)
     }
 
     function pro() {
-      subcriptionBackgroundColor(proEl, advanceEl, arcadeEl)
+      subcriptionBackgroundColor(proEl, arcadeEl, advanceEl);
       plan('Pro', yearPlan3El.innerHTML)
     
       notiC = true;
@@ -330,7 +326,6 @@ function plan(name, value) {
 
      userSubcriptionamount = price.pro;
      finalTotal = sumCheckBox + userSubcriptionamount;
-     console.log(finalTotal)
      displayTotal(finalTotal)
     }
 

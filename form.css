@@ -53,6 +53,7 @@ h1{
   font-size: 1.5rem;
 }
 
+
 button{
   padding: .8em 1em;
   border-radius: .5rem;
@@ -60,6 +61,7 @@ button{
   color: var(--White);
   background-color: var(--Marine-blue);
   transition: all 250ms ease;
+  cursor: pointer;
 }
 
 button:hover{
@@ -67,6 +69,10 @@ button:hover{
 }
 button:active{
   opacity: .69;
+}
+
+.hover{
+  cursor: pointer;
 }
 
 .fw{
